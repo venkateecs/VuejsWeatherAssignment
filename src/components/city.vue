@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(data,index) in dataValues.list" v-if="index%8 === 0">
+      <tr v-for="(data,index) in dataValues.list" v-if="index % 8 === 0">
         <td>{{formatDate(data.dt_txt)}}</td>
         <td>{{data.weather[0].description}}</td>
         <td>{{tempCalculation(data.main.temp_min)}}</td>

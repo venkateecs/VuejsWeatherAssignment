@@ -7,7 +7,6 @@ import Vuex from 'vuex'
 import Store from './store/store'
 import VueResource from 'vue-resource'
 Vue.config.productionTip = false
-
 Vue.use(VueResource);
 
 /* eslint-disable no-new */

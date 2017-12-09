@@ -2,7 +2,7 @@
   <div class="hello">
   <h1 class='Heading'>Please Add Your City</h1>
   <input type='text' v-model="name">
-  <input class="btn" type="button"  value="Save city" @click="saveCity"> <span v-if="errorMessage" class="errorMessage">Please Enter Valid City</span>
+  <input class="btn" type="button"  value="Save city" @click="saveCity"><span v-if="duplicateMessage" class="errorMessage">City Already Exists</span> <span v-if="errorMessage" class="errorMessage">Please Enter Valid City</span>
   <ul  v-for="(value, index) in cities" style="margin-top:1%;">
    <li class="cityalign">
      {{value}}
@@ -35,15 +35,29 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      name:''
+      name:'',
+      duplicateMessage:false
     }
   },
   methods:{
     saveCity(){
       //store.commit('saveCity',this.name)
-       store.dispatch('saveCityActions', this.name) 
+      let duplicateCheck=true;
+      for(let i=0 ; i< store.state.cities.length ;i++) {
+       if(store.state.cities[i] === this.name) {
+         duplicateCheck=false
+         break
+       } 
+      }
+if(duplicateCheck == true){
+  store.dispatch('saveCityActions', this.name) 
       this.name='';
-    },
+      this.duplicateMessage=false;
+}
+else{
+  this.duplicateMessage=true;
+}
+},
     deleteCity(argIndex) {
     store.commit('deleteCity',argIndex)
     },
@@ -98,6 +112,10 @@ a {
 }
 .weatherCity:hover{
   cursor:pointer;
+  font-size:12px;
+  font-weight: bold;
+  /*position:relative;
+  left:25%*/
 }
 .errorMessage{
   color:red;
