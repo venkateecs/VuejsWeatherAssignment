@@ -15,7 +15,7 @@ export default new Vuex.Store({
     saveCity(state,name) {
         http.get('http://api.openweathermap.org/data/2.5/forecast?q='+name+',IN&appid=1c407f68b72190cff18512e643ceac0e')
         .then(function(res){
-            state.cities.push(name);
+            state.cities.push(name.toUpperCase().trim());
             state.errorMessage=false;
         }).catch((err)=>{
             state.errorMessage=true;

@@ -44,7 +44,7 @@ export default {
       //store.commit('saveCity',this.name)
       let duplicateCheck=true;
       for(let i=0 ; i< store.state.cities.length ;i++) {
-       if(store.state.cities[i] === this.name) {
+       if(store.state.cities[i].toUpperCase().trim() === this.name.toUpperCase().trim()) {
          duplicateCheck=false
          break
        } 
