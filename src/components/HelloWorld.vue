@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
   <h1 class='Heading'>Please Add Your City</h1>
-  <input type='text' v-model="name">
+  <input type='text' style="color:#f4415f;font-weight: bold;" v-model="name">
   <input class="btn" type="button"  value="Save city" @click="saveCity"><span v-if="duplicateMessage" class="errorMessage">City Already Exists</span> <span v-if="errorMessage" class="errorMessage">Please Enter Valid City</span>
   <ul  v-for="(value, index) in cities" style="margin-top:1%;">
    <li class="cityalign">
@@ -110,6 +110,8 @@ a {
 .cityalign{
   position:relative;
   right:-8%;
+  color:#4286f4;
+  font-weight: bold;
 }
 .weatherCity:hover{
   cursor:pointer;
