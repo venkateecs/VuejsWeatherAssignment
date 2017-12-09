@@ -1,6 +1,11 @@
 <template>
   <div class="city">
   <button type="button" class="btn btn-primary active" @click="back">Back</button>
+  <select class="cityDropDown" v-model="title" @change="changeCity">
+  <option v-for="city in cities" :value="city">
+  {{city}}
+  </option>
+</select> 
   <h1>Welcome to {{title}} Weather Report</h1>
 <div class="table-responsive">          
   <table class="table">
@@ -44,8 +49,14 @@
 </template>
 
 <script>
+import store from '../store/store'
 export default {
   name: 'city',
+  computed:{
+    cities() {
+      return store.state.cities;
+    }
+  },
   data () {
     return {
       msg: 'Welcome to Hyderabad',
@@ -73,6 +84,12 @@ export default {
        let splitdate=argDate.split('-');
        let formTheDate=splitdate[2].substring(-2,3).trim()+"-"+splitdate[1]+"-"+splitdate[0]
         return formTheDate
+    },
+    changeCity() {
+      this.$http.get('http://api.openweathermap.org/data/2.5/forecast?q='+this.title+',IN&appid=1c407f68b72190cff18512e643ceac0e')
+        .then(function(res){
+           this.dataValues=res.body;
+        })
     }
   }
 }
@@ -80,5 +97,14 @@ export default {
 <style scoped>
 .btn btn-primary active{
   float:right
+}
+.cityDropDown{
+  position:relative;
+  left:5%;
+  color:white;
+  background-color: #286090;
+  height:50%;
+  width:10%;
+  border-radius:3px;
 }
 </style>
