@@ -17,7 +17,20 @@
     <tbody>
       <tr v-for="(data,index) in dataValues.list" v-if="index % 8 === 0">
         <td>{{formatDate(data.dt_txt)}}</td>
-        <td>{{data.weather[0].description}}</td>
+        <td>
+        {{data.weather[0].description}}
+        <img v-if="data.weather[0].description === 'clear sky'" src="http://openweathermap.org/img/w/01d.png">
+        <img v-if="data.weather[0].description === 'few clouds'" src="http://openweathermap.org/img/w/02d.png">
+        <img v-if="data.weather[0].description === 'scattered clouds'" src="http://openweathermap.org/img/w/03d.png">
+        <img v-if="data.weather[0].description === 'broken clouds' " src="http://openweathermap.org/img/w/04d.png">
+        <img v-if="data.weather[0].description === 'shower rain'" src="http://openweathermap.org/img/w/09d.png">
+        <img v-if="data.weather[0].description === 'rain'" src="http://openweathermap.org/img/w/10d.png">
+        <img v-if="data.weather[0].description === 'thunderstorm'" src="http://openweathermap.org/img/w/11d.png">
+        <img v-if="data.weather[0].description === 'snow'" src="http://openweathermap.org/img/w/13d.png">
+        <img v-if="data.weather[0].description === 'mist' || data.weather[0].description === 'smoke' || data.weather[0].description === 'haze' || data.weather[0].description === 'fog'" src="http://openweathermap.org/img/w/50d.png">
+        <img v-if="data.weather[0].description === 'overcast clouds'" src="http://openweathermap.org/img/w/04n.png">
+        <img v-if="data.weather[0].description === 'light rain'" src="http://openweathermap.org/img/w/10d.png">
+        </td>
         <td>{{tempCalculation(data.main.temp_min)}}</td>
         <td>{{tempCalculation(data.main.temp_max)}}</td>
         <td>{{tempCalculation(data.main.temp)}}</td>

@@ -56,6 +56,7 @@ if(duplicateCheck == true){
 }
 else{
   this.duplicateMessage=true;
+  store.state.errorMessage=false;
 }
 },
     deleteCity(argIndex) {
